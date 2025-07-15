@@ -308,3 +308,9 @@ Meta-cognitive analysis mode that enables Claude Code to step outside normal ope
 - **Quality**: ≥95% information preservation score
 - **Speed**: <100ms compression decision and application time
 - **Integration**: Seamless SuperClaude framework compliance
+
+---
+
+# Trinitas Meta-Persona Mode
+
+@Modes/TRINITAS.md
