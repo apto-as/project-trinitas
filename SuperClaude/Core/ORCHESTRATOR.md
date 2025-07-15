@@ -168,6 +168,63 @@ wave_operations:
 
 Dynamic decision trees that map detected patterns to optimal tool combinations, persona activation, and orchestration strategies.
 
+### Trinitas Mode Integration
+
+**Unified Routing Architecture**: SuperClaude's intelligent routing system seamlessly integrates with Trinitas mode to provide enhanced multi-perspective analysis capabilities.
+
+#### Mode Detection Matrix
+```yaml
+trinitas_activation:
+  explicit_triggers:
+    - command: "/sc:trinitas"
+    - flag: "--trinitas"
+    - flag: "--trinitas-brief"
+  
+  automatic_triggers:
+    - complexity_threshold: 0.9
+    - multi_domain_analysis: true
+    - comprehensive_review: true
+    - critical_decision_point: true
+  
+  routing_decision:
+    standard_mode: "Direct SuperClaude persona activation"
+    trinitas_mode: "Route through Trinitas meta-persona coordination"
+```
+
+#### Trinitas Coordination Protocol
+```yaml
+trinitas_coordination:
+  input_analysis:
+    1. "Task complexity and domain assessment"
+    2. "Required specialist expertise identification"
+    3. "Trinitas aspect selection (Springfield/Krukai/Vector)"
+    4. "Multi-perspective analysis strategy"
+  
+  specialist_delegation:
+    selection_criteria:
+      - domain_expertise_match: "Primary specialist capability"
+      - complexity_handling: "Specialist's complexity threshold"
+      - trinitas_supervision: "Appropriate Trinitas aspect assignment"
+    
+    coordination_flow:
+      - specialist_briefing: "Task context and expectations"
+      - analysis_execution: "Specialist performs core analysis"
+      - trinitas_review: "Three-aspect evaluation and integration"
+      - unified_response: "Coordinated final presentation"
+  
+  output_format:
+    full_mode:
+      - springfield_coordination: "Strategic overview and team management"
+      - krukai_technical: "Technical analysis and optimization"
+      - vector_risk: "Risk assessment and mitigation"
+      - integrated_recommendation: "Synthesized actionable guidance"
+    
+    brief_mode:
+      - structured_report: "YAML-formatted multi-perspective analysis"
+      - symbol_optimization: "Token-efficient presentation"
+      - actionable_priorities: "Immediate, short-term, long-term actions"
+```
+
 ### Wave Orchestration Engine
 Multi-stage command execution with compound intelligence. Automatic complexity assessment or explicit flag control.
 
@@ -190,25 +247,25 @@ wave-strategies:
 
 ### Master Routing Table
 
-| Pattern | Complexity | Domain | Auto-Activates | Confidence |
-|---------|------------|---------|----------------|------------|
-| "analyze architecture" | complex | infrastructure | architect persona, --ultrathink, Sequential | 95% |
-| "create component" | simple | frontend | frontend persona, Magic, --uc | 90% |
-| "implement feature" | moderate | any | domain-specific persona, Context7, Sequential | 88% |
-| "implement API" | moderate | backend | backend persona, --seq, Context7 | 92% |
-| "implement UI component" | simple | frontend | frontend persona, Magic, --c7 | 94% |
-| "implement authentication" | complex | security | security persona, backend persona, --validate | 90% |
-| "fix bug" | moderate | any | analyzer persona, --think, Sequential | 85% |
-| "optimize performance" | complex | backend | performance persona, --think-hard, Playwright | 90% |
-| "security audit" | complex | security | security persona, --ultrathink, Sequential | 95% |
-| "write documentation" | moderate | documentation | scribe persona, --persona-scribe=en, Context7 | 95% |
-| "improve iteratively" | moderate | iterative | intelligent persona, --seq, loop creation | 90% |
-| "analyze large codebase" | complex | any | --delegate --parallel-dirs, domain specialists | 95% |
-| "comprehensive audit" | complex | multi | --multi-agent --parallel-focus, specialized agents | 95% |
-| "improve large system" | complex | any | --wave-mode --adaptive-waves | 90% |
-| "security audit enterprise" | complex | security | --wave-mode --wave-validation | 95% |
-| "modernize legacy system" | complex | legacy | --wave-mode --enterprise-waves --wave-checkpoint | 92% |
-| "comprehensive code review" | complex | quality | --wave-mode --wave-validation --systematic-waves | 94% |
+| Pattern | Complexity | Domain | Auto-Activates | Confidence | Trinitas Mode |
+|---------|------------|---------|----------------|------------|---------------|
+| "analyze architecture" | complex | infrastructure | architect persona, --ultrathink, Sequential | 95% | Springfield + architect |
+| "create component" | simple | frontend | frontend persona, Magic, --uc | 90% | Krukai + frontend |
+| "implement feature" | moderate | any | domain-specific persona, Context7, Sequential | 88% | Springfield coordination |
+| "implement API" | moderate | backend | backend persona, --seq, Context7 | 92% | Krukai + backend |
+| "implement UI component" | simple | frontend | frontend persona, Magic, --c7 | 94% | Krukai + frontend |
+| "implement authentication" | complex | security | security persona, backend persona, --validate | 90% | Vector + security |
+| "fix bug" | moderate | any | analyzer persona, --think, Sequential | 85% | Vector + analyzer |
+| "optimize performance" | complex | backend | performance persona, --think-hard, Playwright | 90% | Krukai + performance |
+| "security audit" | complex | security | security persona, --ultrathink, Sequential | 95% | Vector + security |
+| "write documentation" | moderate | documentation | scribe persona, --persona-scribe=en, Context7 | 95% | Springfield + scribe |
+| "improve iteratively" | moderate | iterative | intelligent persona, --seq, loop creation | 90% | All aspects + refactorer |
+| "analyze large codebase" | complex | any | --delegate --parallel-dirs, domain specialists | 95% | --trinitas auto-trigger |
+| "comprehensive audit" | complex | multi | --multi-agent --parallel-focus, specialized agents | 95% | --trinitas auto-trigger |
+| "improve large system" | complex | any | --wave-mode --adaptive-waves | 90% | --trinitas auto-trigger |
+| "security audit enterprise" | complex | security | --wave-mode --wave-validation | 95% | --trinitas auto-trigger |
+| "modernize legacy system" | complex | legacy | --wave-mode --enterprise-waves --wave-checkpoint | 92% | --trinitas auto-trigger |
+| "comprehensive code review" | complex | quality | --wave-mode --wave-validation --systematic-waves | 94% | --trinitas auto-trigger |
 
 ### Decision Trees
 

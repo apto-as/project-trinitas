@@ -168,6 +168,31 @@ Flag system for Claude Code SuperClaude framework with auto-activation and confl
 - Pauses for review and approval before each cycle
 - Allows manual guidance and course correction
 
+## Trinitas Meta-Persona Flags
+
+**`--trinitas`**
+- Trinitasメタペルソナモードを有効化
+- 複数視点の統合分析を提供（Springfield/Krukai/Vector）
+- 自動有効化: 複雑度 >0.9 かつ multi-domain
+- トークン使用量: +40-60%
+
+**`--trinitas-brief`**
+- Trinitasモードの簡潔版
+- 構造化された統合レポートのみ
+- キャラクター対話を省略
+- トークン効率を重視
+
+**`--trinitas-focus [aspect]`**
+- 特定のTrinitas側面を強調
+- `strategy`: Springfield主導の戦略重視
+- `technical`: Krukai主導の技術重視
+- `risk`: Vector主導のリスク重視
+
+**`--trinitas-specialist [type]`**
+- 特定専門家の招集制御
+- 利用可能な専門家: security, performance, architect, frontend, backend, analyzer, qa, refactorer, devops, mentor, scribe
+- Trinitas側面による適切な監督が自動割り当て
+
 ## Persona Activation Flags
 
 **Available Personas**:
@@ -219,3 +244,4 @@ Flag system for Claude Code SuperClaude framework with auto-activation and confl
 **Wave Auto-Activation**: complexity ≥0.7 AND files >20 AND operation_types >2
 **Sub-Agent Auto-Activation**: >7 directories OR >50 files OR complexity >0.8
 **Loop Auto-Activation**: polish, refine, enhance, improve keywords detected
+**Trinitas Auto-Activation**: complexity ≥0.9 AND multi-domain analysis AND comprehensive review requested
