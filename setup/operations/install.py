@@ -94,6 +94,12 @@ Examples:
         help="Run system diagnostics and show installation help"
     )
     
+    parser.add_argument(
+        "--trinitas-mode",
+        action="store_true",
+        help="Enable Trinitas meta-persona mode integration"
+    )
+    
     return parser
 
 
@@ -368,7 +374,8 @@ def perform_installation(components: List[str], args: argparse.Namespace) -> boo
         config = {
             "force": args.force,
             "backup": not args.no_backup,
-            "dry_run": args.dry_run
+            "dry_run": args.dry_run,
+            "trinitas_mode": getattr(args, 'trinitas_mode', False)
         }
         
         success = installer.install_components(ordered_components, config)
@@ -518,6 +525,9 @@ def run(args: argparse.Namespace) -> int:
                     print(f"1. Restart your Claude Code session")
                     print(f"2. Framework files are now available in {args.install_dir}")
                     print(f"3. Use SuperClaude commands and features in Claude Code")
+                    if getattr(args, 'trinitas_mode', False):
+                        print(f"4. Trinitas meta-persona mode is now enabled")
+                        print(f"5. Use /sc:trinitas commands for multi-perspective analysis")
                     
             return 0
         else:

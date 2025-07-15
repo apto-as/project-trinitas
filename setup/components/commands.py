@@ -38,7 +38,7 @@ class CommandsComponent(Component):
             "spawn.md",
             "task.md",
             "test.md",
-            "troubleshoot.md"
+            "troubleshoot.md",
         ]
     
     def get_metadata(self) -> Dict[str, str]:

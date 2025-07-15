@@ -34,7 +34,18 @@ class CoreComponent(Component):
             "MCP.md",
             "PERSONAS.md",
             "ORCHESTRATOR.md",
-            "MODES.md"
+            "MODES.md",
+            "Trinitas-base.md"
+        ]
+        
+        # Define Trinitas mode files to install
+        self.trinitas_mode_files = [
+            "Modes/TRINITAS.md"
+        ]
+        
+        # Define Trinitas commands to install
+        self.trinitas_command_files = [
+            "trinitas.md"
         ]
     
     def get_metadata(self) -> Dict[str, str]:
@@ -63,6 +74,18 @@ class CoreComponent(Component):
             if not source_file.exists():
                 missing_files.append(filename)
         
+        # Check Trinitas mode files
+        for filename in self.trinitas_mode_files:
+            source_file = source_dir / filename
+            if not source_file.exists():
+                missing_files.append(filename)
+        
+        # Check Trinitas command files
+        for filename in self.trinitas_command_files:
+            source_file = source_dir.parent / "Commands" / filename
+            if not source_file.exists():
+                missing_files.append(filename)
+        
         if missing_files:
             errors.append(f"Missing framework files: {missing_files}")
         
@@ -85,9 +108,22 @@ class CoreComponent(Component):
         source_dir = self._get_source_dir()
         files = []
         
+        # Add framework files
         for filename in self.framework_files:
             source = source_dir / filename
             target = self.install_dir / filename
+            files.append((source, target))
+        
+        # Add Trinitas mode files
+        for filename in self.trinitas_mode_files:
+            source = source_dir / filename
+            target = self.install_dir / filename
+            files.append((source, target))
+        
+        # Add Trinitas command files
+        for filename in self.trinitas_command_files:
+            source = source_dir.parent / "Commands" / filename
+            target = self.install_dir / "commands" / filename
             files.append((source, target))
         
         return files
@@ -130,15 +166,42 @@ class CoreComponent(Component):
             # Get files to install
             files_to_install = self.get_files_to_install()
             
-            # Validate all files for security
+            # Validate files for security (split by directory)
             source_dir = self._get_source_dir()
-            is_safe, security_errors = SecurityValidator.validate_component_files(
-                files_to_install, source_dir, self.install_dir
-            )
-            if not is_safe:
-                for error in security_errors:
-                    self.logger.error(f"Security validation failed: {error}")
-                return False
+            commands_dir = source_dir.parent / "Commands"
+            
+            # Split files by source directory
+            core_files = []
+            command_files = []
+            
+            for source, target in files_to_install:
+                try:
+                    # Check if source is in Core directory
+                    source.relative_to(source_dir)
+                    core_files.append((source, target))
+                except ValueError:
+                    # Source is in Commands directory
+                    command_files.append((source, target))
+            
+            # Validate core files
+            if core_files:
+                is_safe, security_errors = SecurityValidator.validate_component_files(
+                    core_files, source_dir, self.install_dir
+                )
+                if not is_safe:
+                    for error in security_errors:
+                        self.logger.error(f"Security validation failed (core): {error}")
+                    return False
+            
+            # Validate command files
+            if command_files:
+                is_safe, security_errors = SecurityValidator.validate_component_files(
+                    command_files, commands_dir, self.install_dir
+                )
+                if not is_safe:
+                    for error in security_errors:
+                        self.logger.error(f"Security validation failed (commands): {error}")
+                    return False
             
             # Ensure install directory exists
             if not self.file_manager.ensure_directory(self.install_dir):
@@ -184,12 +247,16 @@ class CoreComponent(Component):
                 self.logger.error(f"Failed to update metadata: {e}")
                 return False
             
-            # Create additional directories for other components
-            additional_dirs = ["commands", "hooks", "backups", "logs"]
+            # Create additional directories for other components and Trinitas mode
+            additional_dirs = ["commands", "hooks", "backups", "logs", "Modes"]
             for dirname in additional_dirs:
                 dir_path = self.install_dir / dirname
                 if not self.file_manager.ensure_directory(dir_path):
                     self.logger.warning(f"Could not create directory: {dir_path}")
+            
+            # Auto-integrate Trinitas mode into MODES.md if enabled
+            if config.get("trinitas_mode", False):
+                self._integrate_trinitas_mode()
             
             self.logger.success(f"Core component installed successfully ({success_count} files)")
             return True
@@ -205,7 +272,8 @@ class CoreComponent(Component):
             
             # Remove framework files
             removed_count = 0
-            for filename in self.framework_files:
+            all_files = self.framework_files + self.trinitas_mode_files + self.trinitas_command_files + self.trinitas_command_files
+            for filename in all_files:
                 file_path = self.install_dir / filename
                 if self.file_manager.remove_file(file_path):
                     removed_count += 1
@@ -249,7 +317,8 @@ class CoreComponent(Component):
             
             # Create backup of existing files
             backup_files = []
-            for filename in self.framework_files:
+            all_files = self.framework_files + self.trinitas_mode_files + self.trinitas_command_files + self.trinitas_command_files
+            for filename in all_files:
                 file_path = self.install_dir / filename
                 if file_path.exists():
                     backup_path = self.file_manager.backup_file(file_path)
@@ -291,7 +360,8 @@ class CoreComponent(Component):
         errors = []
         
         # Check if all framework files exist
-        for filename in self.framework_files:
+        all_files = self.framework_files + self.trinitas_mode_files + self.trinitas_command_files
+        for filename in all_files:
             file_path = self.install_dir / filename
             if not file_path.exists():
                 errors.append(f"Missing framework file: {filename}")
@@ -335,24 +405,81 @@ class CoreComponent(Component):
         total_size = 0
         source_dir = self._get_source_dir()
         
+        # Calculate size for framework files
         for filename in self.framework_files:
             file_path = source_dir / filename
             if file_path.exists():
                 total_size += file_path.stat().st_size
         
+        # Calculate size for Trinitas mode files
+        for filename in self.trinitas_mode_files:
+            file_path = source_dir / filename
+            if file_path.exists():
+                total_size += file_path.stat().st_size
+        
+        # Calculate size for Trinitas command files
+        for filename in self.trinitas_command_files:
+            file_path = source_dir.parent / "Commands" / filename
+            if file_path.exists():
+                total_size += file_path.stat().st_size
+        
         # Add overhead for settings.json and directories
-        total_size += 10240  # ~10KB overhead
+        total_size += 15360  # ~15KB overhead (increased for Trinitas files)
         
         return total_size
     
     def get_installation_summary(self) -> Dict[str, Any]:
         """Get installation summary"""
+        total_files = len(self.framework_files) + len(self.trinitas_mode_files) + len(self.trinitas_command_files)
         return {
             "component": self.get_metadata()["name"],
             "version": self.get_metadata()["version"],
-            "files_installed": len(self.framework_files),
+            "files_installed": total_files,
             "framework_files": self.framework_files,
+            "trinitas_mode_files": self.trinitas_mode_files,
+            "trinitas_command_files": self.trinitas_command_files,
             "estimated_size": self.get_size_estimate(),
             "install_directory": str(self.install_dir),
-            "dependencies": self.get_dependencies()
+            "dependencies": self.get_dependencies(),
+            "trinitas_enabled": True
         }
+    
+    def _integrate_trinitas_mode(self) -> None:
+        """Integrate Trinitas mode into MODES.md file"""
+        try:
+            modes_file = self.install_dir / "MODES.md"
+            if not modes_file.exists():
+                self.logger.warning("MODES.md file not found for Trinitas integration")
+                return
+            
+            # Read current content
+            content = modes_file.read_text(encoding='utf-8')
+            
+            # Check if Trinitas is already integrated
+            if "Trinitas Meta-Persona" in content and "@Modes/TRINITAS.md" in content:
+                self.logger.info("Trinitas mode already integrated in MODES.md")
+                return
+            
+            # Add Trinitas to overview section
+            if "Three primary modes for optimal performance:" in content:
+                content = content.replace(
+                    "Three primary modes for optimal performance:",
+                    "Four primary modes for optimal performance:"
+                )
+                content = content.replace(
+                    "3. **Token Efficiency**: Optimized communication and resource management",
+                    "3. **Token Efficiency**: Optimized communication and resource management\n4. **Trinitas Meta-Persona**: Multi-perspective analysis and strategic coordination"
+                )
+            
+            # Add Trinitas mode section at the end
+            if not content.endswith("\n"):
+                content += "\n"
+            
+            content += "\n---\n\n# Trinitas Meta-Persona Mode\n\n@Modes/TRINITAS.md\n"
+            
+            # Write updated content
+            modes_file.write_text(content, encoding='utf-8')
+            self.logger.success("Successfully integrated Trinitas mode into MODES.md")
+            
+        except Exception as e:
+            self.logger.error(f"Failed to integrate Trinitas mode into MODES.md: {e}")
