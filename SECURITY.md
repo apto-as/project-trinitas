@@ -1,200 +1,82 @@
 # Security Policy
 
-## 🔒 Reporting Security Vulnerabilities
+## Supported Versions
 
-We take security seriously. If you discover a security vulnerability in SuperClaude Framework, please help us address it responsibly.
+Claude Code is actively maintained. Security updates are provided for the following versions:
 
-### Responsible Disclosure
+| Version | Supported          |
+| ------- | ------------------ |
+| Latest  | :white_check_mark: |
 
-**Please do NOT create public GitHub issues for security vulnerabilities.**
+## Reporting a Vulnerability
 
-Instead, email us directly at: `security@superclaude.dev` (or create a private GitHub Security Advisory)
+We take the security of Claude Code seriously. If you believe you have found a security vulnerability, please report it to us as described below.
 
-### What to Include
+**Please do not report security vulnerabilities through public GitHub issues.**
 
-When reporting a vulnerability, please provide:
+Instead, please report them via [GitHub's security advisory feature](https://github.com/anthropics/claude-code/security/advisories) or by emailing security@anthropic.com.
 
-- **Description** of the vulnerability and potential impact
-- **Steps to reproduce** the issue with minimal examples
-- **Affected versions** and components
-- **Suggested fixes** if you have any ideas
-- **Your contact information** for follow-up questions
+Please include the following information:
 
-### Response Timeline
+- Type of issue (e.g. buffer overflow, SQL injection, cross-site scripting, etc.)
+- Full paths of source file(s) related to the manifestation of the issue
+- The location of the affected source code (tag/branch/commit or direct URL)
+- Any special configuration required to reproduce the issue
+- Step-by-step instructions to reproduce the issue
+- Proof-of-concept or exploit code (if possible)
+- Impact of the issue, including how an attacker might exploit the issue
 
-- **Initial response**: Within 48 hours of report
-- **Severity assessment**: Within 1 week
-- **Fix timeline**: Depends on severity (see below)
-- **Public disclosure**: After fix is released and users have time to update
+We prefer all communications to be in English.
 
-## 🚨 Severity Levels
+## Security Considerations for Extensions
 
-### Critical (Fix within 24-48 hours)
-- Remote code execution vulnerabilities
-- Privilege escalation that affects system security
-- Data exfiltration or unauthorized access to sensitive information
+### Trinitas Extension Security
 
-### High (Fix within 1 week)  
-- Local code execution through hook manipulation
-- Unauthorized file system access beyond intended scope
-- Authentication bypass in MCP server communication
+The Trinitas extension system includes the following security measures:
 
-### Medium (Fix within 1 month)
-- Information disclosure of non-sensitive data
-- Denial of service through resource exhaustion
-- Input validation issues with limited impact
+- **Sandboxed Execution**: Extensions run in isolated environments
+- **Permission-Based Access**: Extensions require explicit permissions for file system access
+- **Code Review Process**: All extension code is subject to security review
+- **Input Validation**: All user inputs are validated and sanitized
+- **No Network Access**: Extensions operate locally without external network calls
 
-### Low (Fix in next release)
-- Minor information leaks
-- Configuration issues with security implications
-- Dependency vulnerabilities with low exploitability
+### Best Practices for Users
 
-## 🛡️ Security Features
+When using Claude Code and extensions:
 
-### Hook Execution Security
-- **Timeout protection**: All hooks have configurable timeouts
-- **Input validation**: JSON schema validation for all hook inputs
-- **Sandboxed execution**: Hooks run with limited system permissions
-- **Error containment**: Hook failures don't affect framework stability
+1. **Review Permissions**: Understand what permissions you're granting
+2. **Keep Updated**: Always use the latest version with security patches
+3. **Limit Scope**: Use the minimum necessary permissions for your tasks
+4. **Monitor Activity**: Review logs and outputs for unexpected behavior
+5. **Report Issues**: Report any suspicious behavior immediately
 
-### File System Protection
-- **Path validation**: Prevents directory traversal attacks
-- **Permission checking**: Validates file system permissions before operations
-- **Secure defaults**: Conservative file access patterns
-- **Backup mechanisms**: Safe fallback when operations fail
+## Response Timeline
 
-### MCP Server Security
-- **Server validation**: Verify MCP server authenticity and integrity
-- **Communication encryption**: Secure channels for all MCP communication
-- **Timeout handling**: Prevent resource exhaustion from unresponsive servers
-- **Fallback mechanisms**: Graceful degradation when servers are compromised
+- **Initial Response**: Within 48 hours of receiving your report
+- **Investigation**: We will investigate and provide updates within 5 business days
+- **Resolution**: Security patches will be released as soon as possible, typically within 30 days
 
-### Configuration Security
-- **Input sanitization**: All configuration inputs are validated and sanitized
-- **Secrets management**: Secure handling of API keys and sensitive data
-- **Permission controls**: Fine-grained access controls in settings.json
-- **Audit logging**: Track security-relevant configuration changes
+## Disclosure Policy
 
-## 🔧 Security Best Practices
+When we receive a security bug report, we will:
 
-### For Users
+1. Confirm the problem and determine the affected versions
+2. Audit code to find any potential similar problems
+3. Prepare fixes for all releases still under maintenance
+4. Release fixes as quickly as possible
 
-#### Installation Security
-```bash
-# Verify installation scripts before running
-cat install.sh | less
+We ask that you:
 
-# Use development mode for testing
-./install.sh --dev
+- Give us reasonable time to investigate and mitigate an issue before making any information public
+- Make a good faith effort to avoid privacy violations, destruction of data, and interruption or degradation of our service
 
-# Check file permissions after installation
-ls -la ~/.claude/
-```
+## Security Updates
 
-#### Configuration Security
-```json
-{
-  "permissions": {
-    "deny": [
-      "Bash(rm:-rf /*)",
-      "Bash(sudo:*)",
-      "WebFetch(domain:localhost)"
-    ]
-  }
-}
-```
+Security updates and advisories will be published:
 
-#### Regular Maintenance
-- **Update regularly**: Keep SuperClaude and dependencies current
-- **Review logs**: Check `~/.claude/` for suspicious activity
-- **Monitor permissions**: Ensure hooks have minimal required permissions
-- **Validate configurations**: Use provided schemas to validate settings
+- [GitHub Security Advisories](https://github.com/anthropics/claude-code/security/advisories)
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code/security)
 
-### For Developers
+## Contact
 
-#### Hook Development
-```python
-# Always validate inputs
-def validate_input(data: Dict[str, Any]) -> bool:
-    required_fields = ["tool", "data"]
-    return all(field in data for field in required_fields)
-
-# Handle errors gracefully
-try:
-    result = process_data(input_data)
-except Exception as e:
-    return {"status": "error", "message": "Processing failed"}
-
-# Use timeouts for external calls
-import signal
-signal.alarm(10)  # 10-second timeout
-```
-
-#### Secure Coding Guidelines
-- **Input validation**: Validate all external inputs
-- **Error handling**: Never expose internal state in error messages
-- **Resource limits**: Implement timeouts and resource limits
-- **Principle of least privilege**: Request minimal required permissions
-
-## 📋 Security Checklist
-
-### Before Release
-- [ ] All dependencies updated to latest secure versions
-- [ ] Static security analysis run (bandit, safety)
-- [ ] Input validation tests pass
-- [ ] Permission model reviewed
-- [ ] Documentation updated with security considerations
-
-### Regular Maintenance
-- [ ] Monthly dependency security updates
-- [ ] Quarterly security review of codebase
-- [ ] Annual third-party security assessment
-- [ ] Continuous monitoring of security advisories
-
-## 🤝 Security Community
-
-### Bug Bounty Program
-Currently, we don't have a formal bug bounty program, but we recognize security researchers who help improve SuperClaude's security:
-
-- **Public acknowledgment** in release notes and security advisories
-- **Early access** to new features and versions
-- **Direct communication** with the development team
-
-### Security Advisory Process
-1. **Internal assessment** of reported vulnerability
-2. **Fix development** with thorough testing
-3. **Coordinated disclosure** with security researcher
-4. **Public advisory** published after fix release
-5. **Post-mortem** to prevent similar issues
-
-## 📞 Contact Information
-
-### Security Team
-- **Email**: `security@superclaude.dev`
-- **PGP Key**: Available on request
-- **Response Time**: 48 hours maximum
-
-### General Security Questions
-For general security questions (not vulnerabilities):
-- Create a GitHub Discussion with the "security" label
-- Check existing documentation in this file
-- Review the [Contributing Guide](CONTRIBUTING.md) for development security practices
-
-## 📚 Additional Resources
-
-### Security-Related Documentation
-- [Contributing Guidelines](CONTRIBUTING.md) - Secure development practices
-- [Installation Guide](README.md) - Secure installation procedures
-- [Configuration Reference](SuperClaude/Settings/settings.json) - Security settings
-
-### External Security Resources
-- [OWASP Top 10](https://owasp.org/www-project-top-ten/)
-- [Python Security Best Practices](https://python.org/dev/security/)
-- [Node.js Security Best Practices](https://nodejs.org/en/docs/guides/security/)
-
----
-
-**Last Updated**: July 2025  
-**Next Review**: October 2025
-
-Thank you for helping keep SuperClaude Framework secure! 🙏
+For security-related questions or concerns, contact: security@anthropic.com

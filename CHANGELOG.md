@@ -7,13 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **NEW EXTENSION**: Trinitas Meta-Persona System v1.1
+  - Springfield (Strategy), Krukai (Technical), Vector (Risk) multi-perspective analysis
+  - `/sc:trinitas` command for comprehensive project analysis
+  - Advanced persona coordination with conflict resolution mechanisms
+  - Character profiles with deep psychological backgrounds
+  - Automatic activation based on complexity thresholds
+  - Integration with all existing SuperClaude commands and flags
+
 ### Changed
 - **BREAKING**: Commands now use `/sc:` namespace to avoid conflicts with user custom commands
 - Commands are now installed in `~/.claude/commands/sc/` subdirectory
-- All 16 commands updated: `/analyze` � `/sc:analyze`, `/build` � `/sc:build`, etc.
+- All 16 commands updated: `/analyze` → `/sc:analyze`, `/build` → `/sc:build`, etc.
 - Automatic migration from old command locations to new `sc/` subdirectory
 
-### Added
+### Added (Original SuperClaude Features)
 - **NEW COMMAND**: `/sc:implement` for feature and code implementation (addresses v2 user feedback)
 - Migration logic to move existing commands to new namespace automatically
 - Enhanced uninstaller to handle both old and new command locations
@@ -25,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Migration preserves existing functionality while preventing naming conflicts
 - Installation process detects and migrates existing commands automatically
 - Tab completion support for `/sc:` prefix to discover all SuperClaude commands
+- Trinitas extension system provides modular architecture for future enhancements
 
 ## [3.0.0] - 2025-07-14
 
@@ -43,3 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Personas**: architect, frontend, backend, analyzer, security, mentor, refactorer, performance, qa, devops, scribe
 - **MCP Servers**: Official library documentation, complex analysis, UI components, browser automation
 - **Installation**: Quick, minimal, and developer profiles with component selection
+
+## 1.0.54
+
+- Hooks: Added UserPromptSubmit hook and the current working directory to hook inputs
