@@ -37,18 +37,22 @@ Trinitasは、SuperClaudeフレームワークに統合される上位メタペ�
 ## Installation
 
 ### Prerequisites
-- SuperClaude v3.0.0 以上
+- SuperClaude v3.0.0 以上（先にインストールが必要）
 - Claude Code CLI
 - Python 3.8+ (自動化スクリプト用)
+- PyYAML (`pip install pyyaml`)
 
-### Quick Install
+### Quick Install（改善版 v2.0）
 ```bash
-# 自動インストール（推奨）
-cd /path/to/superclaude
-python scripts/trinitas_installer.py install
+# 1. SuperClaudeインストール確認
+python scripts/trinitas_patcher_v2.py verify-superclaude ~/.claude
 
-# 手動インストール
-cp -r Trinitas/ SuperClaude/Extensions/
+# 2. Trinitas統合を適用
+cd /path/to/project-trinitas/SuperClaude
+python scripts/trinitas_patcher_v2.py apply ~/.claude
+
+# 3. インストール検証
+python scripts/trinitas_patcher_v2.py verify ~/.claude
 ```
 
 ### Verification
