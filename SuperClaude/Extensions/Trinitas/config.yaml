@@ -1,0 +1,117 @@
+# Trinitas Extension Configuration
+extension:
+  name: "Trinitas"
+  version: "1.0.0"
+  description: "三位一体メタペルソナシステム - Springfield, Krukai, Vector による統合分析"
+  author: "Project Trinitas Team"
+  website: "https://github.com/project-trinitas"
+  license: "MIT"
+
+compatibility:
+  superclaude_min: "3.0.0"
+  superclaude_max: "3.9.9"
+  claude_code_min: "1.0.0"
+
+integration:
+  type: "meta_persona"
+  priority: 100
+  
+  commands:
+    - name: "/sc:trinitas"
+      file: "commands.md"
+      description: "Trinitas統合メタペルソナ分析"
+      category: "Meta & Orchestration"
+      wave_enabled: true
+      performance_profile: "complex"
+  
+  personas:
+    - name: "Springfield"
+      type: "meta_controller"
+      subordinates: ["architect", "mentor", "scribe"]
+      authority: "strategic_oversight"
+      
+    - name: "Krukai"
+      type: "meta_controller"
+      subordinates: ["performance", "backend", "refactorer", "frontend"]
+      authority: "technical_excellence"
+      
+    - name: "Vector"
+      type: "meta_controller"
+      subordinates: ["security", "analyzer", "qa"]
+      authority: "risk_management"
+  
+  flags:
+    - name: "--trinitas"
+      description: "Trinitasメタペルソナモードを有効化"
+      scope: "global"
+      
+    - name: "--trinitas-brief"
+      description: "Trinitas簡潔レポートモード"
+      scope: "trinitas_commands"
+      
+    - name: "--trinitas-full"
+      description: "Trinitas詳細対話モード（デフォルト）"
+      scope: "trinitas_commands"
+      
+    - name: "--trinitas-focus"
+      description: "特定視点を強調 [strategy|technical|risk]"
+      scope: "trinitas_commands"
+      options: ["strategy", "technical", "risk"]
+
+orchestrator_integration:
+  routing_priority: 1
+  auto_activation:
+    complexity_threshold: 0.9
+    multi_domain_analysis: true
+    comprehensive_review: true
+  
+  persona_hierarchy:
+    enabled: true
+    delegation_strategy: "hierarchical_command"
+    conflict_resolution: "meta_persona_priority"
+
+dependencies:
+  required: []
+  optional: 
+    - "Sequential"  # 構造化分析
+    - "Context7"    # ドキュメント参照
+    - "Magic"       # UI実装支援
+    - "Playwright"  # テスト・検証
+
+hooks:
+  pre_load: null
+  post_load: "scripts/validate_integration.py"
+  pre_update: "scripts/backup_state.py"
+  post_update: "scripts/verify_compatibility.py"
+
+settings:
+  default_mode: "full"  # full | brief
+  auto_delegate: true
+  preserve_context: true
+  token_optimization: true
+  
+performance:
+  cache_enabled: true
+  cache_ttl: 3600
+  parallel_analysis: true
+  max_delegation_depth: 3
+
+security:
+  sandbox_execution: false  # Trinitasは信頼された拡張
+  validate_inputs: true
+  sanitize_outputs: true
+  audit_logging: true
+
+files:
+  - "character_profiles.md"  # 深層キャラクター設定と背景ストーリー
+  - "personas.md"           # メタペルソナ機能定義
+  - "modes.md"             # モード統合システム
+  - "coordination.md"      # 高度協調メカニズム
+  - "commands.md"          # コマンド定義
+  - "integration.md"       # SuperClaude統合仕様
+
+metadata:
+  created: "2024-01-15"
+  updated: "2025-01-20"
+  schema_version: "1.1"
+  maintainer: "project-trinitas@example.com"

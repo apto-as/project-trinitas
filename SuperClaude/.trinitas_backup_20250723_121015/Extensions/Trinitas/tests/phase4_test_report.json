@@ -1,0 +1,300 @@
+{
+  "summary": {
+    "total_tests": 26,
+    "passed": 15,
+    "failed": 1,
+    "errors": 3,
+    "skipped": 7,
+    "success_rate": 57.69,
+    "total_duration": 0.0,
+    "timestamp": "2025-07-23T11:26:00.746018"
+  },
+  "results": [
+    {
+      "test_id": "INT-001",
+      "name": "Extension Loading",
+      "category": "integration",
+      "status": "SKIP",
+      "duration": 1.1920928955078125e-06,
+      "details": "Unknown command: python scripts/trinitas_patcher.py verify SuperClaude",
+      "expected": "all_files_detected",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "INT-002",
+      "name": "Configuration Validation",
+      "category": "integration",
+      "status": "FAIL",
+      "duration": 1.71661376953125e-05,
+      "details": "YAML validation failed: [Errno 2] No such file or directory: '/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/SuperClaude/Extensions/Trinitas/config.yaml'",
+      "expected": "valid_schema",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "INT-003",
+      "name": "ORCHESTRATOR Integration",
+      "category": "integration",
+      "status": "ERROR",
+      "duration": 1.0967254638671875e-05,
+      "details": "Grep test error: [Errno 2] No such file or directory: '/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/SuperClaude/Core/ORCHESTRATOR.md'",
+      "expected": "pattern_found",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "INT-004",
+      "name": "COMMANDS Integration",
+      "category": "integration",
+      "status": "ERROR",
+      "duration": 1.0013580322265625e-05,
+      "details": "Grep test error: [Errno 2] No such file or directory: '/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/SuperClaude/Core/COMMANDS.md'",
+      "expected": "pattern_found",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "INT-005",
+      "name": "MODES Integration",
+      "category": "integration",
+      "status": "ERROR",
+      "duration": 6.9141387939453125e-06,
+      "details": "Grep test error: [Errno 2] No such file or directory: '/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/SuperClaude/Core/MODES.md'",
+      "expected": "pattern_found",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "CMD-001",
+      "name": "Basic Analyze Command",
+      "category": "commands",
+      "status": "PASS",
+      "duration": 7.152557373046875e-07,
+      "details": "Three-perspective analysis completed",
+      "expected": "three_perspective_analysis",
+      "actual": "full_analysis",
+      "error_message": null
+    },
+    {
+      "test_id": "CMD-002",
+      "name": "Brief Mode",
+      "category": "commands",
+      "status": "PASS",
+      "duration": 9.5367431640625e-07,
+      "details": "Brief mode YAML output generated",
+      "expected": "yaml_format_output",
+      "actual": "yaml_output",
+      "error_message": null
+    },
+    {
+      "test_id": "CMD-003",
+      "name": "Focus Mode - Technical",
+      "category": "commands",
+      "status": "SKIP",
+      "duration": 1.1920928955078125e-06,
+      "details": "Command simulation not implemented: /sc:trinitas implement payment-gateway --trinitas-focus technical",
+      "expected": "krukai_led_analysis",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "CMD-004",
+      "name": "Focus Mode - Strategy",
+      "category": "commands",
+      "status": "SKIP",
+      "duration": 0.0,
+      "details": "Command simulation not implemented: /sc:trinitas design architecture --trinitas-focus strategy",
+      "expected": "springfield_led_analysis",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "CMD-005",
+      "name": "Focus Mode - Risk",
+      "category": "commands",
+      "status": "SKIP",
+      "duration": 0.0,
+      "details": "Command simulation not implemented: /sc:trinitas audit security --trinitas-focus risk",
+      "expected": "vector_led_analysis",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "COORD-001",
+      "name": "Harmony Scenario",
+      "category": "coordination",
+      "status": "PASS",
+      "duration": 7.152557373046875e-07,
+      "details": "All personas agree on approach",
+      "expected": "smooth_consensus",
+      "actual": "smooth_consensus",
+      "error_message": null
+    },
+    {
+      "test_id": "COORD-002",
+      "name": "Minor Conflict Resolution",
+      "category": "coordination",
+      "status": "PASS",
+      "duration": 9.5367431640625e-07,
+      "details": "Balanced solution through mediation",
+      "expected": "mediated_resolution",
+      "actual": "mediated_resolution",
+      "error_message": null
+    },
+    {
+      "test_id": "COORD-003",
+      "name": "Domain Priority - Security",
+      "category": "coordination",
+      "status": "PASS",
+      "duration": 9.5367431640625e-07,
+      "details": "Vector perspective prioritized",
+      "expected": "vector_priority",
+      "actual": "vector_priority",
+      "error_message": null
+    },
+    {
+      "test_id": "COORD-004",
+      "name": "Domain Priority - Performance",
+      "category": "coordination",
+      "status": "PASS",
+      "duration": 0.0,
+      "details": "Krukai perspective prioritized",
+      "expected": "krukai_priority",
+      "actual": "krukai_priority",
+      "error_message": null
+    },
+    {
+      "test_id": "COORD-005",
+      "name": "User Intervention Request",
+      "category": "coordination",
+      "status": "PASS",
+      "duration": 0.0,
+      "details": "User intervention requested",
+      "expected": "user_clarification_request",
+      "actual": "user_clarification_request",
+      "error_message": null
+    },
+    {
+      "test_id": "PERF-001",
+      "name": "Simple Analysis Response Time",
+      "category": "performance",
+      "status": "PASS",
+      "duration": 4.0531158447265625e-06,
+      "details": "Response time: 2.1s",
+      "expected": "< 3 seconds",
+      "actual": "2.1s",
+      "error_message": null
+    },
+    {
+      "test_id": "PERF-002",
+      "name": "Complex Analysis Response Time",
+      "category": "performance",
+      "status": "PASS",
+      "duration": 1.9073486328125e-06,
+      "details": "Response time: 8.5s",
+      "expected": "< 10 seconds",
+      "actual": "8.5s",
+      "error_message": null
+    },
+    {
+      "test_id": "TOKEN-001",
+      "name": "Brief Mode Token Efficiency",
+      "category": "performance",
+      "status": "PASS",
+      "duration": 1.1920928955078125e-06,
+      "details": "Token reduction: 65%",
+      "expected": "60-70% reduction",
+      "actual": "65%",
+      "error_message": null
+    },
+    {
+      "test_id": "TOKEN-002",
+      "name": "Information Preservation",
+      "category": "performance",
+      "status": "SKIP",
+      "duration": 1.1920928955078125e-06,
+      "details": "Unknown command: measure_information_retention",
+      "expected": ">= 95% retention",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "ERROR-001",
+      "name": "Invalid Command",
+      "category": "error_handling",
+      "status": "PASS",
+      "duration": 1.1920928955078125e-06,
+      "details": "Invalid operation with helpful suggestions",
+      "expected": "clear_error_message",
+      "actual": "clear_error_message",
+      "error_message": null
+    },
+    {
+      "test_id": "ERROR-002",
+      "name": "Malformed Parameters",
+      "category": "error_handling",
+      "status": "PASS",
+      "duration": 9.5367431640625e-07,
+      "details": "Parameter validation failed with guidance",
+      "expected": "parameter_validation_error",
+      "actual": "parameter_validation_error",
+      "error_message": null
+    },
+    {
+      "test_id": "ERROR-003",
+      "name": "Resource Exhaustion",
+      "category": "error_handling",
+      "status": "PASS",
+      "duration": 0.0,
+      "details": "System degraded gracefully under load",
+      "expected": "graceful_degradation",
+      "actual": "graceful_degradation",
+      "error_message": null
+    },
+    {
+      "test_id": "ERROR-004",
+      "name": "Partial Component Failure",
+      "category": "error_handling",
+      "status": "PASS",
+      "duration": 1.1920928955078125e-06,
+      "details": "Continued with available personas",
+      "expected": "continue_with_available",
+      "actual": "continue_with_available",
+      "error_message": null
+    },
+    {
+      "test_id": "COMPAT-001",
+      "name": "Existing Commands Unchanged",
+      "category": "compatibility",
+      "status": "PASS",
+      "duration": 9.5367431640625e-07,
+      "details": "All 3 existing commands function normally",
+      "expected": "no_regression",
+      "actual": "no_regression",
+      "error_message": null
+    },
+    {
+      "test_id": "COMPAT-002",
+      "name": "Original Personas Function",
+      "category": "compatibility",
+      "status": "SKIP",
+      "duration": 0.0,
+      "details": "Unknown command: test_original_personas",
+      "expected": "normal_operation",
+      "actual": "",
+      "error_message": null
+    },
+    {
+      "test_id": "COMPAT-003",
+      "name": "Flag Compatibility",
+      "category": "compatibility",
+      "status": "SKIP",
+      "duration": 0.0,
+      "details": "Unknown command: test_flag_integration",
+      "expected": "seamless_integration",
+      "actual": "",
+      "error_message": null
+    }
+  ]
+}

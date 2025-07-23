@@ -1,0 +1,13 @@
+{
+  "timestamp": "20250720_181634",
+  "files": {
+    "CLAUDE.md": "/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/.trinitas_backup/backup_20250720_181634/CLAUDE.md",
+    "ORCHESTRATOR.md": "/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/.trinitas_backup/backup_20250720_181634/ORCHESTRATOR.md",
+    "EXTENSIONS.md": "/Users/apto-as/workspace/github.com/apto-as/project-trinitas/SuperClaude/.trinitas_backup/backup_20250720_181634/EXTENSIONS.md"
+  },
+  "checksums": {
+    "CLAUDE.md": "0fd0b7f21bd51654db50fa0661a9adc3266ddd0827d7c0d189eb0adb3797a79e",
+    "ORCHESTRATOR.md": "0ff16c39e817ca22e081bdf1e98dd31f3accc27a0b4c7d2bc73c2c21ed21b79e",
+    "EXTENSIONS.md": "b33d18d59942b0f319b156a045dd7aee179cec2dbb95bea50c25db8bac163c0d"
+  }
+}
