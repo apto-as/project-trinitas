@@ -10,8 +10,8 @@ from typing import List, Optional, Dict, Any
 import argparse
 
 from ..core.registry import ComponentRegistry
-from ..core.settings_manager import SettingsManager
-from ..core.file_manager import FileManager
+from ..managers.settings_manager import SettingsManager
+from ..managers.file_manager import FileManager
 from ..utils.ui import (
     display_header, display_info, display_success, display_error, 
     display_warning, Menu, confirm, ProgressBar, Colors
@@ -89,28 +89,11 @@ Examples:
     
     return parser
 
-
-def check_installation_exists(install_dir: Path) -> bool:
-    """Check if SuperClaude is installed"""
-    settings_file = install_dir / "settings.json"
-    return settings_file.exists() and install_dir.exists()
-
-
-def get_installed_components(install_dir: Path) -> Dict[str, str]:
+def get_installed_components(install_dir: Path) -> Dict[str, Dict[str, Any]]:
     """Get currently installed components and their versions"""
     try:
         settings_manager = SettingsManager(install_dir)
-        components = {}
-        
-        # Check for framework configuration in metadata
-        framework_config = settings_manager.get_metadata_setting("framework")
-        if framework_config and "components" in framework_config:
-            for component_name in framework_config["components"]:
-                version = settings_manager.get_component_version(component_name)
-                if version:
-                    components[component_name] = version
-        
-        return components
+        return settings_manager.get_installed_components()
     except Exception:
         return {}
 
@@ -417,6 +400,15 @@ def run(args: argparse.Namespace) -> int:
     operation = UninstallOperation()
     operation.setup_operation_logging(args)
     logger = get_logger()
+    # ✅ Inserted validation code
+    expected_home = Path.home().resolve()
+    actual_dir = args.install_dir.resolve()
+
+    if not str(actual_dir).startswith(str(expected_home)):
+        print(f"\n[✗] Installation must be inside your user profile directory.")
+        print(f"    Expected prefix: {expected_home}")
+        print(f"    Provided path:   {actual_dir}")
+        sys.exit(1)
     
     try:
         # Validate global arguments
