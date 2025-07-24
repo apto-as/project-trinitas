@@ -9,10 +9,14 @@ SuperClaude Extension Systemは、コア機能への最小限の変更で、強�
 ## Architecture
 
 ```
-SuperClaude/
-├── Core/                    # SuperClaudeコア（最小限の変更）
-│   ├── CLAUDE.md           # エントリーポイント（@EXTENSIONS.md追加）
-│   └── EXTENSIONS.md       # 拡張システム管理（このファイル）
+~/.claude/                   # SuperClaudeルート（フラット構造）
+├── CLAUDE.md               # エントリーポイント（@EXTENSIONS.md追加）
+├── EXTENSIONS.md           # 拡張システム管理（このファイル）
+├── COMMANDS.md             # コマンド定義
+├── MODES.md                # モード定義
+├── PERSONAS.md             # ペルソナ定義
+├── Modes/                  # モードファイル
+│   └── TRINITAS.md        # Trinitasメタペルソナモード
 └── Extensions/             # 拡張モジュール配置
     └── {ExtensionName}/    # 個別拡張ディレクトリ
         ├── config.yaml     # 拡張設定
@@ -24,10 +28,10 @@ SuperClaude/
 ## Extension Loading Protocol
 
 ### Auto-Discovery Process
-1. **Extensions/ ディレクトリスキャン**: 利用可能な拡張を自動検出
+1. **Extensions/ ディレクトリスキャン**: ~/.claude/Extensions/ 内の利用可能な拡張を自動検出
 2. **config.yaml読み込み**: 各拡張の設定とメタデータを取得
-3. **互換性チェック**: SuperClaudeバージョンとの互換性を確認
-4. **動的統合**: コマンド、ペルソナ、フラグの動的統合
+3. **互換性チェック**: SuperClaudeバージョンとの互換性を確認（フラット構造対応）
+4. **動的統合**: コマンド、ペルソナ、フラグのフラット構造への動的統合
 5. **競合解決**: 名前空間の衝突や機能重複の自動解決
 
 ### Extension Configuration Format
@@ -114,11 +118,11 @@ ExtensionName/
 
 ### Installation
 ```bash
-# 自動インストール
-python trinitas_installer.py install /path/to/superclaude
+# 自動インストール（フラット構造対応）
+python trinitas_patcher_v2_1.py apply ~/.claude
 
 # 手動配置
-cp -r ExtensionName/ SuperClaude/Extensions/
+cp -r ExtensionName/ ~/.claude/Extensions/
 ```
 
 ### Validation
