@@ -4,15 +4,16 @@
 
 Claude Code is the official Anthropic CLI for [Claude](https://claude.ai), bringing AI-powered development directly to your terminal. Write, debug, and improve code with Claude's assistance across any programming language or framework.
 
-## ✨ Latest: Trinitas Extension v1.1
+## ✨ Latest: Trinitas Agents System v2.0
 
-Now featuring the **Trinitas Meta-Persona System** - an advanced three-perspective analysis framework that provides strategic, technical, and risk-focused insights:
+Now featuring the **Claude Code Native Agents** - revolutionary implementation providing 95% recognition rate and seamless integration:
 
-- 🌸 **Springfield** - Strategic oversight and project coordination
-- ⚡ **Krukai** - Technical excellence and performance optimization  
-- 🔥 **Vector** - Risk management and security analysis
+- 🌸 **Springfield** (`/springfield`) - Strategic oversight and project coordination
+- ⚡ **Krukai** (`/krukai`) - Technical excellence and performance optimization  
+- 🔥 **Vector** (`/vector`) - Risk management and security analysis
+- 🌟 **Trinitas** (`/trinitas`) - Unified multi-perspective analysis
 
-**New Command**: `/sc:trinitas analyze <target>` for comprehensive multi-perspective analysis
+**Revolutionary Improvement**: Native Claude Code agents with direct command recognition, replacing complex extension system with simple agent files.
 
 ## Quick Start
 

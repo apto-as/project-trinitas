@@ -2,11 +2,11 @@
 
 **三位一体メタペルソナシステム** - Springfield, Krukai, Vector による統合知性
 
-## ✨ Phase 4完了 - キャラクター統合版
+## ✨ Phase 5完了 - Claude Code Agents革命版
 
-**最新バージョン**: v1.1 (Character Integration Complete)  
-**リリース日**: 2025-01-20  
-**新機能**: 深層キャラクター設定とTrinitas-base.md完全統合
+**最新バージョン**: v2.0 (Native Agents System)  
+**リリース日**: 2025-01-24  
+**革命的変更**: Extension SystemからClaude Code Native Agentsへの完全移行
 
 ## Overview
 
@@ -42,12 +42,14 @@ Trinitasは、SuperClaudeフレームワークに統合される上位メタペ�
 - Python 3.8+ (自動化スクリプト用)
 - PyYAML (`pip install pyyaml`)
 
-### Quick Install（改善版 v2.0）
+### Quick Install（革命版 v2.0 - Native Agents）
 ```bash
-# 1. SuperClaudeインストール確認
-python scripts/trinitas_patcher_v2.py verify-superclaude ~/.claude
+# 1. Claude Code Agents作成（新方式）
+mkdir -p ~/.claude/agents
+cp SuperClaude/Extensions/Trinitas/agents/*.md ~/.claude/agents/
 
-# 2. Trinitas統合を適用
+# 2. 従来方式（フォールバック用）
+python scripts/trinitas_patcher_v2_1.py apply ~/.claude
 cd /path/to/project-trinitas/SuperClaude
 python scripts/trinitas_patcher_v2.py apply ~/.claude
 
