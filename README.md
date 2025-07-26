@@ -77,6 +77,33 @@ Claude Code automatically understands your project structure, dependencies, and 
 - [Trinitas Extension Guide](SuperClaude/Extensions/Trinitas/README.md)
 - [Command Reference](https://docs.anthropic.com/en/docs/claude-code/cli-reference)
 
+## Installation 📦
+
+SuperClaude installation is a **two-step process**:
+1. First install the Python package
+2. Then run the installer to set up Claude Code integration
+
+### Step 1: Install the Package
+
+**Option A: From PyPI (Recommended)**
+```bash
+uv add SuperClaude
+```
+
+**Option B: From Source**
+```bash
+git clone https://github.com/SuperClaude-Org/SuperClaude_Framework.git
+cd SuperClaude
+uv sync
+```
+### 🔧 UV / UVX Setup Guide
+
+SuperClaude v3 also supports installation via [`uv`](https://github.com/astral-sh/uv) (a faster, modern Python package manager) or `uvx` for cross-platform usage.
+
+### 🌀 Install with `uv`
+
+Make sure `uv` is installed:
+
 ## Example Session
 
 ```bash
