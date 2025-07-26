@@ -8,12 +8,12 @@ Claude Code is the official Anthropic CLI for [Claude](https://claude.ai), bring
 
 Now featuring the **Claude Code Native Agents** - revolutionary implementation providing 95% recognition rate and seamless integration:
 
-- 🌸 **Springfield** (`/springfield`) - Strategic oversight and project coordination
-- ⚡ **Krukai** (`/krukai`) - Technical excellence and performance optimization  
-- 🔥 **Vector** (`/vector`) - Risk management and security analysis
-- 🌟 **Trinitas** (`/trinitas`) - Unified multi-perspective analysis
+- 🌸 **Springfield** - Strategic oversight and project coordination
+- ⚡ **Krukai** - Technical excellence and performance optimization  
+- 🔥 **Vector** - Risk management and security analysis
+- 🌟 **Trinitas** - Unified multi-perspective analysis
 
-**Revolutionary Improvement**: Native Claude Code agents with direct command recognition, replacing complex extension system with simple agent files.
+**Revolutionary Improvement**: Native Claude Code agents with automatic task detection, replacing complex extension system with intelligent agent selection.
 
 ## Quick Start
 
@@ -57,9 +57,9 @@ Claude Code automatically understands your project structure, dependencies, and 
 - Suggests improvements based on best practices
 
 ### 🚀 Advanced Extensions
-- **Trinitas System**: Multi-perspective analysis with Springfield, Krukai, and Vector personas
+- **Trinitas Agents System**: Intelligent multi-perspective analysis with automatic agent selection
 - **MCP Integration**: Context7, Sequential, Magic, and Playwright server support
-- **Specialized Commands**: `/sc:analyze`, `/sc:build`, `/sc:implement`, and more
+- **SuperClaude Framework**: Enhanced command system with intelligent routing
 
 ## Use Cases
 
@@ -74,7 +74,8 @@ Claude Code automatically understands your project structure, dependencies, and 
 
 - [Quick Start Guide](https://docs.anthropic.com/en/docs/claude-code/quickstart)
 - [Complete Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- [Trinitas Extension Guide](SuperClaude/Extensions/Trinitas/README.md)
+- [Claude Code Sub-Agents](https://docs.anthropic.com/en/docs/claude-code/sub-agents)
+- [Trinitas Agents System](SuperClaude/Extensions/Trinitas/README.md)
 - [Command Reference](https://docs.anthropic.com/en/docs/claude-code/cli-reference)
 
 ## Installation 📦
@@ -104,6 +105,46 @@ SuperClaude v3 also supports installation via [`uv`](https://github.com/astral-s
 
 Make sure `uv` is installed:
 
+## Trinitas Agents Installation 🌸
+
+For enhanced multi-perspective AI analysis, install the Trinitas Agents System:
+
+### Prerequisites
+- Claude Code must be installed and configured
+- Python 3.8+ required
+
+### Installation Steps
+
+1. **Clone the Trinitas Project**
+   ```bash
+   git clone https://github.com/apto-as/project-trinitas.git
+   cd project-trinitas
+   ```
+
+2. **Install Trinitas Agents**
+   ```bash
+   python trinitas_agents_installer.py install
+   ```
+
+3. **Verify Installation**
+   ```bash
+   python trinitas_agents_installer.py verify
+   ```
+
+### Usage Examples
+
+Once installed, Trinitas agents will automatically activate based on your task descriptions:
+
+- **Comprehensive Analysis**: "Analyze this system from multiple perspectives"
+- **Strategic Planning**: "Plan the architecture for this project"  
+- **Performance Optimization**: "Optimize this code for better performance"
+- **Security Assessment**: "Check for security vulnerabilities in this code"
+
+### Uninstall
+```bash
+python trinitas_agents_installer.py remove
+```
+
 ## Example Session
 
 ```bash
@@ -120,16 +161,19 @@ I'll create a Python Flask web server:
 
 ## Advanced Usage
 
-### Trinitas Multi-Perspective Analysis
+### Trinitas Agents Automatic Selection
 ```bash
-# Comprehensive system analysis
-claude "/sc:trinitas analyze user-authentication"
+# Comprehensive multi-perspective analysis (triggers Trinitas agent)
+claude "Analyze this system comprehensively from all angles"
 
-# Technical-focused analysis
-claude "/sc:trinitas implement payment-gateway --trinitas-focus technical"
+# Strategic planning (triggers Springfield agent)
+claude "Help me plan the architecture for this project"
 
-# Risk assessment
-claude "/sc:trinitas audit security-system --trinitas-focus risk"
+# Technical optimization (triggers Krukai agent)
+claude "Optimize this code for maximum performance"
+
+# Security assessment (triggers Vector agent)
+claude "Check this system for security vulnerabilities"
 ```
 
 ### Project Management

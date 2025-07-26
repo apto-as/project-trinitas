@@ -2,11 +2,11 @@
 
 **三位一体メタペルソナシステム** - Springfield, Krukai, Vector による統合知性
 
-## ✨ Phase 5完了 - Claude Code Agents革命版
+## ✨ Phase 6完了 - Claude Code Native Agents
 
-**最新バージョン**: v2.0 (Native Agents System)  
-**リリース日**: 2025-01-24  
-**革命的変更**: Extension SystemからClaude Code Native Agentsへの完全移行
+**最新バージョン**: v2.0 (Claude Code Native Agents)  
+**リリース日**: 2025-01-26  
+**革命的変更**: Extension SystemからClaude Code Native Agentsへの完全移行完了
 
 ## Overview
 
@@ -42,66 +42,74 @@ Trinitasは、SuperClaudeフレームワークに統合される上位メタペ�
 - Python 3.8+ (自動化スクリプト用)
 - PyYAML (`pip install pyyaml`)
 
-### Quick Install（革命版 v2.0 - Native Agents）
+### Quick Install (v2.0 - Native Agents)
 ```bash
-# 1. Claude Code Agents作成（新方式）
+# 1. Trinitasプロジェクトをクローン
+git clone https://github.com/apto-as/project-trinitas.git
+cd project-trinitas
+
+# 2. 自動インストール（推奨）
+python trinitas_agents_installer.py install
+
+# 3. インストール検証
+python trinitas_agents_installer.py verify
+```
+
+### Manual Install (Advanced Users)
+```bash
+# 手動でエージェントファイルをコピー
 mkdir -p ~/.claude/agents
 cp SuperClaude/Extensions/Trinitas/agents/*.md ~/.claude/agents/
 
-# 2. 従来方式（フォールバック用）
-python scripts/trinitas_patcher_v2_1.py apply ~/.claude
-cd /path/to/project-trinitas/SuperClaude
-python scripts/trinitas_patcher_v2.py apply ~/.claude
-
-# 3. インストール検証
-python scripts/trinitas_patcher_v2.py verify ~/.claude
+# インストール確認
+ls ~/.claude/agents/
 ```
 
 ### Verification
 ```bash
-# 統合確認
-/sc:trinitas --help
+# インストール状態確認
+python trinitas_agents_installer.py status
 
-# 基本動作テスト
-/sc:trinitas analyze test-project --trinitas-brief
+# Claude Codeでのエージェント確認
+claude "List available agents" # エージェント一覧表示（開発中機能）
 ```
 
-## Usage Examples
+## Usage Examples - Automatic Agent Selection
 
-### Basic Analysis
+### Comprehensive Analysis (Trinitas Agent)
 ```bash
-# 包括的システム分析
-/sc:trinitas analyze user-authentication
+# 包括的システム分析（Trinitasエージェント自動選択）
+claude "Analyze this system comprehensively from all perspectives"
 
-# 簡潔レポート形式
-/sc:trinitas analyze payment-gateway --trinitas-brief
-
-# 特定視点強調
-/sc:trinitas analyze api-server --trinitas-focus technical
+# マルチドメイン要求（Trinitasエージェント対象）
+claude "Review this code for strategy, performance, and security"
 ```
 
-### Implementation Support
+### Strategic Planning (Springfield Agent)
 ```bash
-# 機能実装支援
-/sc:trinitas implement user-dashboard
+# 戦略的計画（Springfieldエージェント自動選択）
+claude "Help me plan the architecture for this project"
 
-# セキュリティ重視実装
-/sc:trinitas implement admin-panel --trinitas-focus risk
-
-# パフォーマンス重視実装  
-/sc:trinitas implement data-processing --trinitas-focus technical
+# 長期戦略（Springfieldエージェント対象）
+claude "Design a scalable system architecture for microservices"
 ```
 
-### Strategic Planning
+### Technical Optimization (Krukai Agent)
 ```bash
-# プロジェクト計画立案
-/sc:trinitas plan microservices-migration
+# 技術最適化（Krukaiエージェント自動選択）
+claude "Optimize this code for maximum performance"
 
-# アーキテクチャ設計
-/sc:trinitas design distributed-system --wave-mode force
+# 品質改善（Krukaiエージェント対象）
+claude "Refactor this code to improve maintainability and performance"
+```
 
-# リスク評価
-/sc:trinitas assess legacy-system --trinitas-focus risk
+### Security Assessment (Vector Agent)
+```bash
+# セキュリティ評価（Vectorエージェント自動選択）
+claude "Check this system for security vulnerabilities"
+
+# リスク分析（Vectorエージェント対象）
+claude "Analyze potential risks and edge cases in this implementation"
 ```
 
 ## Configuration
